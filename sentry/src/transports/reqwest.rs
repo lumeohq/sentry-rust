@@ -68,7 +68,7 @@ impl ReqwestHttpTransport {
             // NOTE: because of lifetime issues, building the request using the
             // `client` has to happen outside of this async block.
             async move {
-                match request.send().await {
+                match dbg!(request).send().await {
                     Ok(response) => {
                         let headers = response.headers();
 
