@@ -96,6 +96,7 @@ impl ReqwestHttpTransport {
                         }
                     }
                     Err(err) => {
+                        dbg!(&err);
                         sentry_debug!("Failed to send envelope: {}", err);
                     }
                 }

@@ -85,7 +85,9 @@ impl TransportThread {
     }
 
     pub fn send(&self, envelope: Envelope) {
-        let _ = self.sender.send(Task::SendEnvelope(envelope));
+        if self.sender.try_send(Task::SendEnvelope(envelope)).is_err() {
+            dbg!("Failed to send envelope");
+        }
     }
 
     pub fn flush(&self, timeout: Duration) -> bool {
